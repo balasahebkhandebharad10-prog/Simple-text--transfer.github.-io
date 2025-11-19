@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Tool Website</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        /* Main Content Styles */
+        main {
+            padding: 2rem 0;
+            min-height: calc(100vh - 140px);
+        }
+        
+        .page {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        /* Tool Section Styles */
+        .tool-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #3498db;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 150px;
+            font-family: monospace;
+        }
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .result-container {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            min-height: 100px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: #ecf0f1;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+            }
+            
+            .footer-links a {
+                margin: 0.25rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">SimpleTool</div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Contact Us</a></li>
+                        <li><a href="#" class="nav-link" data-page="privacy">Privacy Policy</a></li>
+                        <li><a href="#" class="nav-link" data-page="terms">Terms & Conditions</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Home Page -->
+            <section id="home" class="page active">
+                <h1>Welcome to SimpleTool</h1>
+                <p>This is a simple tool website that helps you perform basic text transformations. Use the tool below to convert your text to uppercase or lowercase.</p>
+                
+                <div class="tool-container">
+                    <h2>Text Transformation Tool</h2>
+                    <div class="input-group">
+                        <label for="input-text">Enter your text:</label>
+                        <textarea id="input-text" placeholder="Type or paste your text here..."></textarea>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Select transformation:</label>
+                        <div>
+                            <input type="radio" id="uppercase" name="transform" value="uppercase" checked>
+                            <label for="uppercase" style="display: inline;">Uppercase</label>
+                            
+                            <input type="radio" id="lowercase" name="transform" value="lowercase" style="margin-left: 1rem;">
+                            <label for="lowercase" style="display: inline;">Lowercase</label>
+                        </div>
+                    </div>
+                    
+                    <button id="run-btn" class="btn">Run Transformation</button>
+                    
+                    <div class="result-container">
+                        <h3>Result:</h3>
+                        <div id="output-text">Your transformed text will appear here...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Page -->
+            <section id="about" class="page">
+                <h1>About Us</h1>
+                <p>Welcome to SimpleTool, a platform dedicated to providing easy-to-use online tools for everyday tasks.</p>
+                
+                <h2>Our Mission</h2>
+                <p>Our mission is to simplify complex tasks and make useful tools accessible to everyone, regardless of their technical background.</p>
+                
+                <h2>What We Offer</h2>
+                <p>We provide a range of simple yet powerful tools that can help with various tasks, from text manipulation to basic calculations and more.</p>
+                
+                <h2>Our Team</h2>
+                <p>We are a small team of developers passionate about creating helpful tools that make life easier for our users.</p>
+            </section>
+
+            <!-- Contact Page -->
+            <section id="contact" class="page">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you! Please reach out with any questions, feedback, or suggestions.</p>
+                
+                <div class="tool-container">
+                    <h2>Get In Touch</h2>
+                    <p><strong>Email:</strong> contact@simpletool.com</p>
+                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                    <p><strong>Address:</strong> 123 Tool Street, Tech City, TC 10101</p>
+                    
+                    <h3>Send us a message:</h3>
+                    <div class="input-group">
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="email">Your Email:</label>
+                        <input type="email" id="email" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="message">Your Message:</label>
+                        <textarea id="message" placeholder="Type your message here..." style="min-height: 120px;"></textarea>
+                    </div>
+                    
+                    <button id="send-btn" class="btn">Send Message</button>
+                </div>
+            </section>
+
+            <!-- Privacy Policy Page -->
+            <section id="privacy" class="page">
+                <h1>Privacy Policy</h1>
+                <p>Last updated: January 1, 2023</p>
+                
+                <h2>Information We Collect</h2>
+                <p>We collect information you provide directly to us when using our tools, such as the text you input for processing.</p>
+                
+                <h2>How We Use Your Information</h2>
+                <p>We use the information we collect to provide, maintain, and improve our services. Your data is processed locally in your browser and is not stored on our servers.</p>
+                
+                <h2>Information Sharing</h2>
+                <p>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties.</p>
+                
+                <h2>Security</h2>
+                <p>We take reasonable measures to help protect information about you from loss, theft, misuse, and unauthorized access.</p>
+                
+                <h2>Changes to This Policy</h2>
+                <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+            </section>
+
+            <!-- Terms & Conditions Page -->
+            <section id="terms" class="page">
+                <h1>Terms & Conditions</h1>
+                <p>Last updated: January 1, 2023</p>
+                
+                <h2>Acceptance of Terms</h2>
+                <p>By accessing and using SimpleTool, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                
+                <h2>Use License</h2>
+                <p>Permission is granted to temporarily use SimpleTool for personal, non-commercial transitory viewing only.</p>
+                
+                <h2>Disclaimer</h2>
+                <p>The tools on SimpleTool are provided "as is". We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+                
+                <h2>Limitations</h2>
+                <p>In no event shall SimpleTool or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the tools on SimpleTool.</p>
+                
+                <h2>Governing Law</h2>
+                <p>These terms and conditions are governed by and construed in accordance with the laws of your country, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="about">About</a>
+                <a href="#" class="nav-link" data-page="contact">Contact Us</a>
+                <a href="#" class="nav-link" data-page="privacy">Privacy Policy</a>
+                <a href="#" class="nav-link" data-page="terms">Terms & Conditions</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 SimpleTool. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                document.getElementById(pageId).classList.add('active');
+            });
+        });
+
+        // Tool functionality
+        document.getElementById('run-btn').addEventListener('click', function() {
+            const inputText = document.getElementById('input-text').value;
+            const transformType = document.querySelector('input[name="transform"]:checked').value;
+            let outputText = '';
+            
+            if (transformType === 'uppercase') {
+                outputText = inputText.toUpperCase();
+            } else {
+                outputText = inputText.toLowerCase();
+            }
+            
+            document.getElementById('output-text').textContent = outputText || 'No text to transform.';
+        });
+
+        // Contact form functionality
+        document.getElementById('send-btn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all fields before sending.');
+                return;
+            }
+            
+            alert('Thank you for your message! We will get back to you soon.');
+            
+            // Clear form
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+        });
+    </script>
+</body>
+</html>
